@@ -1,0 +1,319 @@
+/* === CSS Variables === */
+:root {
+  --color-background: #000000;
+  --color-text-primary: #D0D0D0;
+  --color-border-primary: #282828;
+  --color-border-secondary: #444;
+  --color-image-border: #333;
+  --color-accent: #c3ff00;
+}
+
+/* === Base Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Merriweather', serif;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* === Layout Sections === */
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-section {
+  flex: 0 0 auto;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.bottom-section {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+/* === Nav Title and Links === */
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.9em;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border-secondary);
+}
+
+.link-item:hover {
+  color: black;
+  background-color: var(--color-accent);
+}
+
+.link-text {
+  display: flex;
+  align-items: center;
+}
+
+/* === Terminal Section === */
+.terminal-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.terminal-box {
+  border: 1px solid var(--color-border-secondary);
+  background-color: var(--color-background);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.terminal-box-title {
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-bottom: 15px;
+}
+
+.terminal-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.terminal-list li {
+  margin-bottom: 10px;
+}
+
+.terminal-option {
+  cursor: pointer;
+  display: inline-block;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  margin: 2px 0;
+}
+
+.terminal-option:hover {
+  background-color: var(--color-border-primary);
+  color: var(--color-accent);
+}
+
+.terminal-tree {
+  font-size: 0.9em;
+  white-space: pre;
+  color: var(--color-text-primary);
+}
+
+/* === Academic Path Section === */
+.academic-path {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.institution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.institution img {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-secondary);
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: var(--color-text-primary);
+}
+
+.arrow {
+  font-size: 2rem;
+  color: var(--color-accent);
+}
+
+/* === Timeline === */
+.timeline-container {
+  width: 90%;
+  margin: 30px auto;
+}
+
+/* Track with room for popups */
+.timeline-track {
+  display: flex;
+  gap: 1px;
+  width: 100%;
+  height: 40px; /* gives room for popup above */
+  border-radius: 4px;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+/* Each segment is inside a wrapper for hover space */
+.timeline-segment-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.timeline-segment {
+  width: 100%;
+  height: 8px;
+  background-color: #333;
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.timeline-segment.filled {
+  background-color: var(--color-accent);
+}
+
+/* Popup card styling */
+.timeline-popup {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 8px;
+  background-color: #111;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 0.75em;
+  line-height: 1.4em;
+  white-space: pre-line;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 100;
+  width: 220px;
+}
+
+/* Show popup on hover */
+.timeline-segment-wrapper:hover .timeline-popup {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Popup for filled segments */
+.filled-popup {
+  background-color: var(--color-accent);
+  color: black;
+  border-color: var(--color-border-primary);
+}
+
+
+/* === Labels Below Track === */
+.timeline-labels .levels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.75em;
+  color: white;
+}
+
+.timeline-labels .level {
+  flex: 1;
+  text-align: center;
+}
+
+.level-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.level-date {
+  display: block;
+  font-size: 0.8em;
+}
+
+
+/* === Footer === */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-top: 1px solid var(--color-border-primary);
+  background-color: #080808;
+  font-size: 0.85em;
+}
+
+.footer-left {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-source-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 0.85em;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 4px;
+}
+
+.footer-source-item:hover {
+  background-color: var(--color-accent);
+  color: black;
+}
+
+.footer-right {
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.member-link {
+  color: white;
+  font-weight: bold;
+}
+
