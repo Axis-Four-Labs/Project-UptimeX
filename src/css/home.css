@@ -1,0 +1,116 @@
+:root {
+  --color-background: #000000;
+  --color-text-primary: #D0D0D0;
+  --color-border-primary: #282828;
+  --color-border-secondary: #444;
+  --color-image-border: #333;
+  --color-accent: #c3ff00;
+}
+
+.bottom-section {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Merriweather', serif;
+
+}
+
+.terminal-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.terminal-box {
+  border: 1px solid var(--color-border-secondary);
+  background-color: var(--color-background);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.terminal-box-title {
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-bottom: 15px;
+}
+
+.academic-path {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.institution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.institution img {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-secondary);
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: var(--color-text-primary);
+}
+
+.arrow {
+  font-size: 2rem;
+  color: var(--color-accent);
+}
+
+
+.terminal-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.link-icon {
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  filter: invert(1);
+}
+
+.terminal-list li {
+  margin-bottom: 10px;
+}
+
+.terminal-option {
+  cursor: pointer;
+  display: inline-block;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  margin: 2px 0;
+}
+
+.terminal-option:hover {
+  background-color: var(--color-border-primary);
+  color: var(--color-accent);
+}
+
+.terminal-tree {
+  font-size: 0.9em;
+  white-space: pre;
+  color: var(--color-text-primary);
+}
+
+.member-link {
+  color: white;
+  font-weight: bold;
+}
