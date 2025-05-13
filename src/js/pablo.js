@@ -1,58 +1,67 @@
+const imgNotesPath = "../../notes/pablo/";
+const name = "Pablo"; 
 
-const notesGrid = document.getElementById('notes-grid');
-const previewPane = document.getElementById('preview-pane');
+document.getElementById("notes-title").textContent = `These are the academic notes that ${name} has taken`;
 
-const directory = "../../../notes/pablo/";
-const prefix = "qq_note_";
-let index = 0;
-
-previewPane.innerHTML = `<p>Select a note to preview.</p>`;
-
-function loadNextImage() {
-  const src = `${directory}${prefix}${index}.png`;
-  const img = new Image();
-
-  img.onload = () => {
-    const container = document.createElement('div');
-    container.className = 'image-container';
-
-    const imageTop = document.createElement('div');
-    imageTop.className = 'image-top';
-
-    const displayedImg = document.createElement('img');
-    displayedImg.src = src;
-    displayedImg.alt = `Note ${index}`;
-    imageTop.appendChild(displayedImg);
-
-    const imageBottom = document.createElement('div');
-    imageBottom.className = 'image-bottom';
-    imageBottom.textContent = `[Quantum] Scanned Note [${index}]`;
-
-    container.appendChild(imageTop);
-    container.appendChild(imageBottom);
-
-    container.addEventListener('click', () => {
-      document.querySelectorAll('.image-container.selected').forEach(el => {
-        el.classList.remove('selected');
-      });
-
-      container.classList.add('selected');
-
-      previewPane.innerHTML = `<img src="${src}" alt="Preview">`;
-    });
-
-    notesGrid.appendChild(container);
-    index++;
-    loadNextImage();
-  };
-
-  img.onerror = () => {
-    if (index === 0) {
-      previewPane.innerHTML = `<p>No Data to Show</p>`;
-    }
-  };
-
-  img.src = src;
+async function tryFileExists(url) {
+  try {
+    const res = await fetch(url, { method: 'HEAD' });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
-loadNextImage();
+async function loadNotes() {
+  const grid = document.getElementById('notes-grid');
+  const preview = document.getElementById('preview-pane');
+  const previewTitle = document.getElementById('preview-title');
+  let index = 0;
+
+  while (true) {
+    const filename = `quantum_note_${index}.md`;
+    const fileURL = imgNotesPath + filename;
+
+    if (await tryFileExists(fileURL)) {
+      const noteDiv = document.createElement('div');
+      noteDiv.className = 'note-item';
+
+      const filenameText = document.createElement('p');
+      filenameText.textContent = filename;
+
+      noteDiv.appendChild(filenameText);
+      grid.appendChild(noteDiv);
+
+      // Add click to load markdown into preview
+      noteDiv.onclick = async () => {
+        document.querySelectorAll('.note-item').forEach(el => el.classList.remove('selected'));
+        noteDiv.classList.add('selected');
+        previewTitle.textContent = `Markdown preview for file ${filename}`;
+
+        try {
+          const res = await fetch(fileURL);
+          const text = await res.text();
+          preview.innerHTML = `<div class="markdown-preview">${marked.parse(text)}</div>`;
+
+          // Trigger KaTeX rendering
+          renderMathInElement(preview, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ]
+          });
+
+        } catch {
+          preview.innerHTML = `<div class="markdown-preview placeholder">Failed to load ${filename}</div>`;
+        }
+      };
+
+
+      index++;
+    } else {
+      break;
+    }
+  }
+}
+
+loadNotes();

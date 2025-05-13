@@ -1,72 +1,67 @@
+const imgNotesPath = "../../notes/marlon/";
+const name = "Marlon"; 
 
-const notesGrid = document.getElementById('notes-grid');
-const previewPane = document.getElementById('preview-pane');
+document.getElementById("notes-title").textContent = `These are the academic notes that ${name} has taken`;
 
-const directory = "../../../notes/marlon/";
-const prefix = "qq_note_";
-let index = 0;
-
-const script = document.createElement("script");
-script.src = "https://cdn.jsdelivr.net/npm/marked/marked.min.js";
-script.onload = () => {
-  previewPane.innerHTML = `
-    <div class="markdown-preview placeholder">
-      <p>Select a note to preview.</p>
-    </div>`;
-  loadNextNote();
-};
-document.head.appendChild(script);
-
-function loadNextNote() {
-  const filename = `${prefix}${index}.md`;
-  const src = `${directory}${filename}`;
-
-  fetch(src)
-    .then(res => {
-      if (!res.ok) throw new Error("Not found");
-      return res.text();
-    })
-    .then(markdown => {
-      const container = document.createElement("div");
-      container.className = "image-container";
-
-      const imageTop = document.createElement("div");
-      imageTop.className = "image-top";
-      imageTop.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
-          <path fill="currentColor" d="M26 30H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v24a2 2 0 0 1-2 2M6 4v24h20V4Z"/>
-          <path fill="currentColor" d="M22 15H10v-2h12zm-2 5h-8v-2h8z"/>
-        </svg>
-      `;
-
-      const imageBottom = document.createElement("div");
-      imageBottom.className = "image-bottom";
-      imageBottom.textContent = filename;
-
-      container.appendChild(imageTop);
-      container.appendChild(imageBottom);
-
-      container.addEventListener("click", () => {
-        document.querySelectorAll('.image-container.selected').forEach(el => {
-          el.classList.remove('selected');
-        });
-
-        container.classList.add("selected");
-
-        const html = marked.parse(markdown);
-        previewPane.innerHTML = `<div class="markdown-preview">${html}</div>`;
-      });
-
-      notesGrid.appendChild(container);
-      index++;
-      loadNextNote();
-    })
-    .catch(() => {
-      if (index === 0) {
-        previewPane.innerHTML = `
-          <div class="markdown-preview placeholder">
-            <p>No Markdown Notes Available</p>
-          </div>`;
-      }
-    });
+async function tryFileExists(url) {
+  try {
+    const res = await fetch(url, { method: 'HEAD' });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
+
+async function loadNotes() {
+  const grid = document.getElementById('notes-grid');
+  const preview = document.getElementById('preview-pane');
+  const previewTitle = document.getElementById('preview-title');
+  let index = 0;
+
+  while (true) {
+    const filename = `quantum_note_${index}.md`;
+    const fileURL = imgNotesPath + filename;
+
+    if (await tryFileExists(fileURL)) {
+      const noteDiv = document.createElement('div');
+      noteDiv.className = 'note-item';
+
+      const filenameText = document.createElement('p');
+      filenameText.textContent = filename;
+
+      noteDiv.appendChild(filenameText);
+      grid.appendChild(noteDiv);
+
+      // Add click to load markdown into preview
+      noteDiv.onclick = async () => {
+        document.querySelectorAll('.note-item').forEach(el => el.classList.remove('selected'));
+        noteDiv.classList.add('selected');
+        previewTitle.textContent = `Markdown preview for file ${filename}`;
+
+        try {
+          const res = await fetch(fileURL);
+          const text = await res.text();
+          preview.innerHTML = `<div class="markdown-preview">${marked.parse(text)}</div>`;
+
+          // Trigger KaTeX rendering
+          renderMathInElement(preview, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ]
+          });
+
+        } catch {
+          preview.innerHTML = `<div class="markdown-preview placeholder">Failed to load ${filename}</div>`;
+        }
+      };
+
+
+      index++;
+    } else {
+      break;
+    }
+  }
+}
+
+loadNotes();
