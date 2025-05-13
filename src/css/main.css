@@ -1,3 +1,11 @@
+/* === Font Setup === */
+.lora-<uniquifier> {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
 /* === CSS Variables === */
 :root {
   --color-background: #000000;
@@ -5,7 +13,7 @@
   --color-border-primary: #282828;
   --color-border-secondary: #444;
   --color-image-border: #333;
-  --color-accent: #c3ff00;
+  --color-accent: white;
 }
 
 /* === Base Reset === */
@@ -15,17 +23,17 @@
   box-sizing: border-box;
 }
 
-body,
-html {
+html,
+body {
   min-height: 100%;
   background-color: var(--color-background);
   color: var(--color-text-primary);
-  font-family: 'Merriweather', serif;
+  font-family: 'Lora', serif;
   font-size: 14px;
   overflow-x: hidden;
 }
 
-/* === Layout Sections === */
+/* === Layout Structure === */
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -49,13 +57,13 @@ html {
   color: var(--color-text-primary);
 }
 
-/* === Nav Title and Links === */
+/* === Title & Navigation === */
 .title {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 1.8em;
+  font-size: 2.2em;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -72,10 +80,9 @@ html {
   align-items: center;
   gap: 8px;
   color: white;
-  text-decoration: none;
+  text-decoration: underline;
   font-size: 0.9em;
   padding: 5px 10px;
-  border: 1px solid var(--color-border-secondary);
 }
 
 .link-item:hover {
@@ -88,7 +95,7 @@ html {
   align-items: center;
 }
 
-/* === Terminal Section === */
+/* === Terminal Grid === */
 .terminal-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -98,7 +105,6 @@ html {
 }
 
 .terminal-box {
-  border: 1px solid var(--color-border-secondary);
   background-color: var(--color-background);
   padding: 20px;
   overflow-y: auto;
@@ -108,6 +114,11 @@ html {
   font-weight: bold;
   color: var(--color-accent);
   margin-bottom: 15px;
+}
+
+.terminal-box a {
+  color: white;
+  text-decoration: underline;
 }
 
 .terminal-list {
@@ -123,14 +134,14 @@ html {
 .terminal-option {
   cursor: pointer;
   display: inline-block;
-  color: var(--color-text-primary);
-  text-decoration: none;
+  color: white;
+  text-decoration: underline;
   margin: 2px 0;
 }
 
 .terminal-option:hover {
-  background-color: var(--color-border-primary);
-  color: var(--color-accent);
+  background-color: white;
+  color: black;
 }
 
 .terminal-tree {
@@ -179,7 +190,6 @@ html {
   margin: 50px auto;
 }
 
-/* Track with room for popups */
 .timeline-track {
   display: flex;
   gap: 1px;
@@ -190,7 +200,6 @@ html {
   z-index: 1;
 }
 
-/* Each segment is inside a wrapper for hover space */
 .timeline-segment-wrapper {
   flex: 1;
   position: relative;
@@ -212,7 +221,6 @@ html {
   background-color: var(--color-accent);
 }
 
-/* Popup card styling */
 .timeline-popup {
   position: absolute;
   bottom: 100%;
@@ -245,7 +253,7 @@ html {
   border-color: var(--color-border-primary);
 }
 
-/* === Labels Below Track === */
+/* === Timeline Labels === */
 .timeline-labels .levels {
   display: flex;
   justify-content: space-between;
@@ -310,41 +318,69 @@ html {
 }
 
 .member-link {
-  color: white;
+  color: var(--color-accent);
   font-weight: bold;
 }
 
-.headshot-row {
+/* === Member Profiles === */
+.member-list {
   display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-bottom: 40px;
   flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin: 20px auto;
+  border-bottom: 1px solid var(--color-border-primary);
+  padding-bottom: 30px;
 }
 
-.member-card {
-  text-align: center;
-  max-width: 100px;
+.member-profile {
+  display: flex;
+  align-items: stretch;
+  gap: 15px;
+  max-width: 340px;
+  flex: 1 1 300px;
 }
 
-.member-card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid var(--color-image-border);
-  object-fit: cover;
+.member-profile .headshot {
+  flex: 0 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.member-card .name {
-  margin-top: 8px;
-  color: var(--color-text-primary);
-  font-size: 0.9em;
+.member-profile .headshot img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border: 1px solid var(--color-border-secondary);
+  object-fit: contain;
+  filter: grayscale(10%);
+  opacity: 0.85;
+}
+
+.member-profile .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.member-profile .info h2 {
+  font-size: 1em;
+  margin-bottom: 5px;
+  color: var(--color-text-heading);
+}
+
+.member-profile .info p {
+  font-size: 0.85em;
+  color: var(--color-text-secondary);
+  margin: 2px 0;
 }
 
 .member-profile .info a {
   color: var(--color-accent);
   text-decoration: none;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .member-profile .info a:hover {
@@ -352,11 +388,8 @@ html {
   color: white;
 }
 
-
-
 /* === Responsive Design === */
 @media (max-width: 768px) {
-
   .arrow {
     transform: rotate(90deg);
   }
@@ -383,7 +416,6 @@ html {
   }
 
   .terminal-grid {
-    display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
@@ -440,61 +472,6 @@ html {
   .footer-right {
     align-self: center;
   }
-
-}
-
-.member-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  margin: 20px auto;
-  border-bottom: 1px solid var(--color-border-primary);
-  padding-bottom: 30px;
-}
-
-.member-profile {
-  display: flex;
-  align-items: stretch;
-  gap: 15px;
-  max-width: 340px;
-  flex: 1 1 300px;
-}
-
-.member-profile .headshot {
-  flex: 0 0 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.member-profile .headshot img {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  border: 1px solid var(--color-border-secondary);
-  object-fit: contain;
-  filter: grayscale(10%);
-  opacity: 0.85;
-}
-
-.member-profile .info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.member-profile .info h2 {
-  font-size: 1em;
-  margin-bottom: 5px;
-  color: var(--color-text-heading);
-}
-
-.member-profile .info p {
-  font-size: 0.85em;
-  color: var(--color-text-secondary);
-  margin: 2px 0;
 }
 
 @media (max-width: 480px) {
