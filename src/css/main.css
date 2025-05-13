@@ -341,9 +341,26 @@ html {
   font-size: 0.9em;
 }
 
+.member-profile .info a {
+  color: var(--color-accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.member-profile .info a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+
 
 /* === Responsive Design === */
 @media (max-width: 768px) {
+
+  .arrow {
+    transform: rotate(90deg);
+  }
+
   .top-section {
     padding: 15px;
   }
@@ -407,18 +424,23 @@ html {
 
   .footer {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 10px;
   }
 
   .footer-left {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
   }
 
   .footer-right {
-    align-self: flex-end;
+    align-self: center;
   }
+
 }
 
 .member-list {
