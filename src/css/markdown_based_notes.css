@@ -140,6 +140,14 @@ body {
   margin: 1rem 0;
 }
 
+.preview-pane img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--color-image-border);
+  border-radius: 8px;
+}
+
 .markdown-preview .katex {
   font-size: 1.05rem;
   line-height: 1.6;

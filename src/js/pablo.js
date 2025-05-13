@@ -1,5 +1,5 @@
 const imgNotesPath = "../../notes/pablo/";
-const name = "Pablo"; 
+const name = "Pablo Bedolla"; 
 
 document.getElementById("notes-title").textContent = `These are the academic notes that ${name} has taken`;
 
@@ -32,7 +32,6 @@ async function loadNotes() {
       noteDiv.appendChild(filenameText);
       grid.appendChild(noteDiv);
 
-      // Add click to load markdown into preview
       noteDiv.onclick = async () => {
         document.querySelectorAll('.note-item').forEach(el => el.classList.remove('selected'));
         noteDiv.classList.add('selected');
@@ -43,7 +42,6 @@ async function loadNotes() {
           const text = await res.text();
           preview.innerHTML = `<div class="markdown-preview">${marked.parse(text)}</div>`;
 
-          // Trigger KaTeX rendering
           renderMathInElement(preview, {
             delimiters: [
               { left: '$$', right: '$$', display: true },
@@ -51,11 +49,15 @@ async function loadNotes() {
             ]
           });
 
-        } catch {
+        } catch (err) {
+          console.error(err);
           preview.innerHTML = `<div class="markdown-preview placeholder">Failed to load ${filename}</div>`;
         }
       };
 
+      if (index === 0) {
+        noteDiv.click(); 
+      }
 
       index++;
     } else {
