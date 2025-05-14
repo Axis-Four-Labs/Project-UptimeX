@@ -3,6 +3,9 @@
 **Disclosure:**  
 The content herein is based on readings from the following source:
 ```
+Title: Introduction to Modern Cryptography (Third Edition)
+Author: Jonathan Katz, Yehuda Lindell
+
 Title: An Intensive Introduction to Cryptography
 Author: Boaz Barak
 ```
@@ -42,5 +45,17 @@ Such encryption scheme is valid if for every such $y$, $D_k(y)=x$.
 
 The decryption of an encryption $x$ is $x$ only if both $E$ and $D$ use the same $k$ key.
 
+For any fixed $k$ krey, the map from message $m \rightarrow E_k(m)$ ciphertext is one-to-one, thus $|E_k(m)| \geq |m|$. The focus should remain on the plaintext length as the quantity to optimize in an encryption scheme. As $l(n)$ grows, the smaller length of $k$ that is needed to protect messages of equal length, hence becoming better. The function $l(n)$ tells us the possible length of a plaintext message $m$ for some key $k$ in context of bits.
+
+A private-key encryption scheme is defined by specifying a `message space` $M$ with three algorithms:
+1. Generator $G$ —  generates keys
+2. Encrypting $E$ —  encrypts plaintext
+3. Decryption $D$ —  decrypts ciphertext
+
+A message space $M$ defines a set of possible messages within some scheme. The algorithm $G$ is a probabilistic algorithm introduces randomness into the scheme, which outputs a some key $k$ given some distribution. The algorithm $E$ takes an input key $k$, some message $m$, and outputs a ciphertext $c$ (defined above). The algorithm $D$ takes an input key $k$, some ciphertext $c$, and outputs a plaintext $m$ (defined above). 
+
+A key-space $K$ represents all possible key outputs by $G$ uniformly. 
+
+> ___Kerckhoffs's Principle___: A cryptographic system's security should depend solely on the secrecy of the key, not on the secrecy of the algorithm itself.
 
 
