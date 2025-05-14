@@ -1,69 +1,126 @@
-const imgNotesPath = "../../notes/pablo/";
-const name = "Pablo Bedolla"; 
+const notesPath = "../../notes/pablo/";
+const authorFullName = "Pablo Bedolla";
+const authorShortName = "Pablo";
 
-document.getElementById("notes-title").textContent = `These are the academic notes that ${name} has taken`;
+// Set the title at the top
+document.getElementById("notes-title").textContent = `These are the academic notes that ${authorFullName} has taken`;
 
+// Check if a file exists using HEAD request
 async function tryFileExists(url) {
-  try {
-    const res = await fetch(url, { method: 'HEAD' });
-    return res.ok;
-  } catch {
-    return false;
-  }
+   try {
+      const res = await fetch(url, {
+         method: 'HEAD'
+      });
+      return res.ok;
+   } catch {
+      return false;
+   }
 }
 
 async function loadNotes() {
-  const grid = document.getElementById('notes-grid');
-  const preview = document.getElementById('preview-pane');
-  const previewTitle = document.getElementById('preview-title');
-  let index = 0;
+   const grid = document.getElementById("notes-grid");
+   const preview = document.getElementById("preview-pane");
+   const previewTitle = document.getElementById("preview-title");
 
-  while (true) {
-    const filename = `quantum_note_${index}.md`;
-    const fileURL = imgNotesPath + filename;
+   let index = 0;
+   let firstNoteLoaded = false;
 
-    if (await tryFileExists(fileURL)) {
-      const noteDiv = document.createElement('div');
-      noteDiv.className = 'note-item';
+   const sections = [{
+         kind: "quantum",
+         prefix: "qnt_",
+         cssClass: "quantum-note",
+         label: "qnt",
+         title: `${authorShortName.toLowerCase()}'s quantum computing notes`
+      },
+      {
+         kind: "crypto",
+         prefix: "cry_",
+         cssClass: "crypto-note",
+         label: "cry",
+         title: `${authorShortName.toLowerCase()}'s cryptography notes`
+      }
+   ];
 
-      const filenameText = document.createElement('p');
-      filenameText.textContent = filename;
+   for (const section of sections) {
+      const title = document.createElement("p");
+      title.className = "notes-section-title";
+      title.innerHTML = `These are ${section.title}. This is corpus [<span class="notes-corpus-title">${section.label}</span>]`;
 
-      noteDiv.appendChild(filenameText);
-      grid.appendChild(noteDiv);
+      const container = document.createElement("div");
+      container.className = `notes-group ${section.kind}-group`;
 
-      noteDiv.onclick = async () => {
-        document.querySelectorAll('.note-item').forEach(el => el.classList.remove('selected'));
-        noteDiv.classList.add('selected');
-        previewTitle.textContent = `Markdown preview for file ${filename}`;
+      section.container = container;
 
-        try {
-          const res = await fetch(fileURL);
-          const text = await res.text();
-          preview.innerHTML = `<div class="markdown-preview">${marked.parse(text)}</div>`;
+      grid.appendChild(title);
+      grid.appendChild(container);
+   }
 
-          renderMathInElement(preview, {
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '$', right: '$', display: false }
-            ]
-          });
+   while (true) {
+      let foundAny = false;
 
-        } catch (err) {
-          console.error(err);
-          preview.innerHTML = `<div class="markdown-preview placeholder">Failed to load ${filename}</div>`;
-        }
-      };
+      for (const section of sections) {
+         const filename = `${section.prefix}${index}.md`;
+         const url = notesPath + filename;
 
-      if (index === 0) {
-        noteDiv.click(); 
+         if (await tryFileExists(url)) {
+            foundAny = true;
+
+            const note = document.createElement("div");
+            note.className = `note-item ${section.cssClass}`;
+            note.dataset.kind = section.kind;
+
+            const label = document.createElement("p");
+            label.textContent = filename;
+            note.appendChild(label);
+
+            section.container.appendChild(note);
+
+            note.onclick = async () => {
+               // Update UI
+               document.querySelectorAll(".note-item").forEach(n => n.classList.remove("selected"));
+               note.classList.add("selected");
+               previewTitle.textContent = `Markdown preview for file ${filename}`;
+
+               try {
+                  const res = await fetch(url);
+                  const markdown = await res.text();
+
+                  // Convert to HTML and inject
+                  const html = marked.parse(markdown);
+                  preview.innerHTML = `<div class="markdown-preview">${html}</div>`;
+
+                  // Render KaTeX math expressions AFTER injection
+                  renderMathInElement(preview, {
+                     delimiters: [{
+                           left: "$$",
+                           right: "$$",
+                           display: true
+                        },
+                        {
+                           left: "$",
+                           right: "$",
+                           display: false
+                        }
+                     ]
+                  });
+               } catch (err) {
+                  console.error(`Error loading ${filename}:`, err);
+                  preview.innerHTML = `<div class="markdown-preview placeholder">Failed to load ${filename}</div>`;
+               }
+            };
+
+            // Auto-click first loaded note
+            if (!firstNoteLoaded) {
+               note.click();
+               firstNoteLoaded = true;
+            }
+         }
       }
 
+      if (!foundAny) break;
       index++;
-    } else {
-      break;
-    }
-  }
+   }
 }
 
+// Start
 loadNotes();

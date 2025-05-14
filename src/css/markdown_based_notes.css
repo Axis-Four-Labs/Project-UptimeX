@@ -13,7 +13,7 @@
   --color-border-primary: #282828;
   --color-border-secondary: #444;
   --color-image-border: #333;
-  --color-accent: white;
+  --color-accent: #aad227;
 }
 
 /* === Global Styles === */
@@ -166,6 +166,11 @@ body {
   color: #4169E1;
 }
 
+.preview-pane ul {
+  list-style-type: lower-alpha;
+  padding-left: 1.5rem;
+}
+
 /* === KaTeX Styling === */
 .markdown-preview .katex {
   font-family: Cantarell, Calibri, sans-serif;
@@ -184,8 +189,51 @@ body {
   line-height: 1.7;
 }
 
-.markdown-preview p > .katex {
+.markdown-preview p>.katex {
   margin: 0 0.15em;
+}
+
+.notes-group {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-secondary);
+  padding-bottom: 0.5rem;
+}
+
+.quantum-note p::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 6px;
+  background-image: url("https://www.dtu.dk/english/-/media/dtudk/nyheder/webnyheder/2023/05/quantum-computers-and-accelerated-discovery_40645906341_o-1-.jpg?r=1&rkp=1&rw=1920&rh=0&hash=BB7A1C7881FCBFA764C901146C4BA3D7");
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.crypto-note p::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 6px;
+  background-image: url("https://media.istockphoto.com/id/496814887/photo/angel-of-death.jpg?s=612x612&w=0&k=20&c=GWGRylp38oU8Fb5QDTlUsz0IREvSV6Yi9SQEh_pVmUQ=");
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.notes-section-title {
+  font-size: 0.8rem;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.notes-corpus-title {
+  font-size: 0.8rem;
+  color: var(--color-accent);
 }
 
 /* === Responsive Design === */
