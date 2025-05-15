@@ -14,7 +14,6 @@ These notes serve as a concise summary of the main ideas and reflect my own unde
 These are very good resources to assist with the notes taken in this file: [[NP-Hard and NP-Complete Problems](https://www.youtube.com/watch?v=e2cF8a5aAhE), [Introduction to Algorithms, 3rd Edition (MIT Press)](https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844)] 
 
 ---
-
 ## _Chapter 1: Introduction_ 
 You must properly define the set of goals you want to achieve. Consider a the set of bits $\{0, 1\}$. We define an encryption function $E: (k, m) \rightarrow c$ to be the function mapping some secret key $k \in \{0, 1\}^n$ and a plaintext message $m \in \{0, 1\}^l$ into a ciphertext $c \in \{0, 1\}^L$ for soeme $L$. This is written in the form $c = E_k(m)$. We define a decryption function $D: (k, c) \rightarrow m$ to be the function mapping some secret key $k \in \{0, 1\}^n$ and some ciphertext $c \in \{0, 1\}^L$ back into the plaintext message $m \in \{0, 1\}^l$. This is written in the from $m=D_k(c)$.  Therefore, we can use the same $k$ for every encryption and decryption to always get the same $m$. 
 

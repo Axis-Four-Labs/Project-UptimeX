@@ -42,8 +42,10 @@ body {
 
 .top-section {
   flex: 0 0 auto;
+  margin-top: 15px;
   padding: 20px;
   border-bottom: 1px solid var(--color-border-primary);
+  text-align: center; 
 }
 
 .bottom-section {
@@ -58,14 +60,35 @@ body {
 }
 
 /* === Title & Navigation === */
+.title-wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 15px;
+  margin: 0 auto 15px auto; 
+}
+
 .title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
   font-size: 2.2em;
   font-weight: 600;
-  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.angel-overlay {
+  position: absolute;
+  top: -13px;      
+  right: -14px;   
+  width: 46px; 
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.angel-overlay img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .links {
@@ -473,7 +496,6 @@ body {
     align-self: center;
   }
 }
-
 @media (max-width: 480px) {
   .title {
     font-size: 1.2em;
