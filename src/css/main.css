@@ -381,6 +381,10 @@ body {
   opacity: 0.85;
 }
 
+.info {
+  text-align: left;
+}
+
 .member-profile .info {
   flex: 1;
   display: flex;
