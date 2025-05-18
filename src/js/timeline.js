@@ -1,7 +1,7 @@
 const track = document.getElementById('timelineTrack');
 const levels = document.querySelectorAll('.timeline-labels .level');
 
-const filledLevels = 0;
+const filledLevels = 1;
 track.innerHTML = "";
 
 const popupContent = {
@@ -45,3 +45,24 @@ levels.forEach((level, i) => {
   segmentWrapper.appendChild(segment);
   track.appendChild(segmentWrapper);
 });
+
+
+document.body.classList.add('loading');
+
+const MIN_LOADING_TIME = 2000; 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const preloader = document.getElementById('preloader');
+
+  setTimeout(() => {
+    if (preloader) {
+      preloader.style.opacity = '0';
+      setTimeout(() => {
+        preloader.remove();
+        document.body.classList.remove('loading');
+      }, 400); 
+    }
+  }, MIN_LOADING_TIME);
+});
+
+

@@ -1,3 +1,64 @@
+#preloader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-background);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s ease;
+}
+
+.loader-bar {
+  width: 200px;
+  height: 6px;
+  background-color: var(--color-border-secondary);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background-color: var(--color-accent);
+  animation: axisFourLoading 1.2s ease-in-out infinite;
+}
+
+@keyframes axisFourLoading {
+  0% {
+    left: -40%;
+    width: 40%;
+  }
+  50% {
+    left: 30%;
+    width: 60%;
+  }
+  100% {
+    left: 100%;
+    width: 20%;
+  }
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+/**/
+.timeline-segment.filled.timeline-segment-Level0 {
+  animation: flashGreen 2s infinite;
+}
+
+@keyframes flashGreen {
+  0%   { background-color: var(--color-accent); }
+  50%  { background-color: #6a9620; }
+  100% { background-color: var(--color-accent); }
+}
+
 /* === Font Setup === */
 .lora-<uniquifier> {
   font-family: "Lora", serif;
@@ -241,8 +302,9 @@ body {
 }
 
 .timeline-segment.filled {
-  background-color: var(--color-accent);
+    background-color: var(--color-accent) !important;
 }
+
 
 .timeline-popup {
   position: absolute;
