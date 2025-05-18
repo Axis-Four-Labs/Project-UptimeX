@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Axis Four | The Path</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #000;
+      color: #d0d0d0;
+      font-family: 'Lora', serif;
+    }
+
+    .navbar {
+      background-color: #000;
+      border-bottom: 1px solid #222;
+    }
+
+    .navbar-brand {
+      color: white;
+      font-weight: bold;
+      font-size: 1.4rem;
+      text-shadow: none;
+    }
+
+
+    .navbar-brand:hover {
+      color: #c6ff00;
+    }
+
+    h1 {
+      color: #aad227;
+      text-shadow: 0 0 8px #aad227;
+      margin-bottom: 20px;
+    }
+
+    .phase {
+      background-color: #111;
+      padding: 20px;
+      border-left: 4px solid #aad227;
+      box-shadow: inset 0 0 12px #0a0a0a;
+      transition: all 0.3s ease;
+      min-height: 200px;
+    }
+
+    .phase:hover {
+      background-color: #1a1a1a;
+      border-left-color: #fff;
+      box-shadow: 0 0 20px #aad227;
+    }
+
+    h3 {
+      color: #aad227;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .logo {
+      height: 100px;
+      width: auto;
+    }
+
+    .custom-learn-btn {
+      background-color: #aad227;
+      color: #000;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 24px;
+      font-size: 0.85rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .custom-learn-btn:hover {
+      background-color: #caff4f;
+      transform: translateY(-1px);
+      color: #000;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    .opacity-0 {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .opacity-1 {
+      opacity: 1 !important;
+      pointer-events: all;
+    }
+
+    .cinematic-intro {
+      font-size: 2rem;
+      text-align: center;
+      color: #d0d0d0;
+      margin-top: 4rem;
+      margin-bottom: 6rem;
+      padding: 0 2rem;
+    }
+
+
+    .modal-content {
+      background-color: #111 !important;
+      color: #f0f0f0;
+      border: none;
+      border-radius: 10px;
+      max-width: 850px;
+      margin: auto;
+      padding: 1.5rem;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    .modal-header {
+      border-bottom: none;
+      justify-content: center;
+      position: relative;
+      padding-bottom: 0;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00ff80;
+    }
+
+    .modal-header .btn-close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      filter: invert(1);
+    }
+
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background-color: #00ff80;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .modal-body {
+      padding-top: 0.5rem;
+      padding-right: 1rem;
+    }
+
+    .modal-body h2,
+    .modal-body h3,
+    .modal-body h4 {
+      color: #00ff80;
+      margin-top: 2rem;
+    }
+
+    .modal-body h1 {
+      font-size: 2rem;
+      color: #00ff80;
+      margin-top: 1.5rem;
+    }
+
+    .modal-body li strong,
+    .modal-body b {
+      color: #c6ff00;
+    }
+
+    #level1 h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    #level1 p {
+      margin-bottom: 1rem;
+    }
+
+    #level1-columns {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    .card {
+      background-color: #111;
+      border: 2px solid cyan;
+      padding: 20px;
+      margin: 10px;
+      color: #00f6ff;
+      width: 100%;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card p {
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+
+
+    .tron-modal {
+      background: radial-gradient(ellipse at center, #111 0%, #0a0a0a 100%);
+      border: 2px solid #00f0ff;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .neon-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      color: #00f0ff;
+      text-shadow:
+        0 0 5px #0ff;
+      animation: flicker 2.5s infinite;
+    }
+
+    @keyframes flicker {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      45% {
+        opacity: 0.85;
+      }
+
+      55% {
+        opacity: 1;
+      }
+
+      70% {
+        opacity: 0.65;
+      }
+
+      85% {
+        opacity: 1;
+      }
+    }
+
+    .tron-modal h5 {
+      margin-top: 2rem;
+      color: #00f0ff;
+      font-weight: bold;
+      border-bottom: 1px solid #00f0ff33;
+      padding-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .tron-modal ul li strong {
+      color: #c6ff00;
+    }
+
+    .tron-modal .btn-close {
+      filter: invert(1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/index.html" style="padding-left: 4.5rem;">Axis Four</a>
+    </div>
+  </nav>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="d-flex align-items-center mb-4">
+      <img src="src/assets/image.svg" alt="Axis Four Logo" class="logo me-3" />
+      <div>
+        <h1 class="mb-2">Architecting The Digital</h1>
+        <p class="mb-0">
+          Axis Four is a next-gen research and engineering team advancing cybersecurity, quantum computing,
+          cryptography, and advanced systems. We’re not replicating the past. We’re rewriting what’s possible.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="phase">
+          <h3>Phase I: Foundation</h3>
+          <p>We laid the groundwork with shared resources, synced note systems, and a unified mindset. Tools like GitHub
+            and Obsidian formed our digital backbone.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="phase">
+          <h3>Phase II: Execution</h3>
+          <p>We engineered a 5-level mastery protocol. Each level blends offensive security, quantum research, formal
+            proofs, and publication goals into one streamlined flow.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="phase">
+          <h3>Phase III: Deployment</h3>
+          <p>We’re publishing, building open-source frameworks, and preparing for operations aligned with real-world
+            systems. This isn’t theory. It’s live code.</p>
+        </div>
+        <div class="text-end mt-5" style="padding-top: 7rem;">
+          <button class="btn custom-learn-btn" id="learnMoreBtn">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Target Section -->
+  <div id="level1" style="margin-top: 40px; padding: 2rem 2rem 0 2rem;">
+
+    <div id="phase-columns" class="opacity-0" style="transition: opacity 2s ease;">
+      <div id="cinematic-text" class="cinematic-intro opacity-0" style="transition: opacity 2s ease;">
+        Just as the program moves in phases, so does each level — theory ignites, simulation tests, and publication
+        echoes.
+      </div>
+
+
+      <div class="row g-4 pb-5">
+        <div class="col-md-4">
+          <div class="phase">
+            <h3>Phase I: Theory</h3>
+            <p>We unlock the core primitives of advanced systems, quantum mechanics, and next-gen security. This phase
+              lays the intellectual architecture with precision logic, mathematical formalism, and deep-structure
+              analysis.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="phase">
+            <h3>Phase II: Simulations</h3>
+            <p>We shift from static knowledge to dynamic experimentation. Virtualized sandboxes and modular testbeds
+              simulate cyber-physical systems, enabling live protocol execution, AI-driven diagnostics, and code-level
+              manipulations.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="phase">
+            <h3>Phase III: Publications</h3>
+            <p>Knowledge becomes signal. You synthesize your work into high-impact writeups, micro-papers, and lab-grade
+              documentation, designed for versioned release, peer critique, and integration into evolving networks of
+              thought.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2 style="color: #aad227;">Level 1: Fundamentals</h2>
+    <p style="padding-left: 6rem; padding-bottom: 5.2rem;">From Zero to Deterministic</p>
+
+    <div class="row g-4 pb-5">
+      <div class="col-md-4">
+        <div class="phase" role="button" data-bs-toggle="modal" data-bs-target="#mathModal">
+          <h3>Mathematics</h3>
+          <p>Forging logical structure from abstraction. The math of machines begins here.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="phase" role="button" data-bs-toggle="modal" data-bs-target="#programmingModal">
+          <h3>Programming</h3>
+          <p>Writing your first language — where code meets control.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="phase" role="button" data-bs-toggle="modal" data-bs-target="#cyberModal">
+          <h3>Cybersecurity</h3>
+          <p>Learning to defend. Observing the perimeter before breaching the core.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Level 2 Container -->
+  <section id="level2" class="position-relative py-5" style="margin-top: 10rem; background-color: #1a1a1a;">
+    <div id="level2-banner" class="position-sticky top-0 z-3 py-3 px-4"
+      style="background-color: #222; border-left: 6px solid #00f0ff;">
+      <div class="d-flex justify-content-end">
+        <h2 class="text-info fw-bold mb-0">Level 2: Core Knowledge</h2>
+      </div>
+    </div>
+
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="p-4 h-100" role="button" data-bs-toggle="modal" data-bs-target="#mathModalLevel2"
+            style="background: #111; border: 2px solid #00f0ff; transition: transform 0.3s ease;">
+            <h4 class="text-info text-center">Math</h4>
+            <p class="text-center">Discrete math, modular arithmetic.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="p-4 h-100" role="button" data-bs-toggle="modal" data-bs-target="#programmingModalLevel2"
+            style="background: #111; border: 2px solid #00f0ff; transition: transform 0.3s ease;">
+            <h5 class="text-info text-center">Programming</h5>
+            <p class="text-center">Recursion, trees, Big-O.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="p-4 h-100" role="button" data-bs-toggle="modal" data-bs-target="#networkingModal"
+            style="background: #111; border: 2px solid #00f0ff; transition: transform 0.3s ease;">
+            <h5 class="text-info text-center">Networking</h5>
+            <p class="text-center">Subnetting, ARP, TCP/IP stack.</p>
+          </div>
+        </div>
+
+
+
+
+        <div class="row g-4 mt-2">
+          <div class="col-md-4">
+            <div class="p-4 h-100" style="background: #111; border: 2px solid #00f0ff; ">
+              <h4 class="text-info">Cybersecurity</h4>
+              <p>RSA, AES, PKI fundamentals.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-4 h-100" style="background: #111; border: 2px solid #00f0ff;">
+              <h4 class="text-info">Quantum</h4>
+              <p>Bloch sphere, teleportation, Grover’s algorithm.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-4 h-100" style="background: #111; border: 2px solid #00f0ff;">
+              <h4 class="text-info">Systems</h4>
+              <p>Computer architecture, memory, and OS concepts.</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+  </section>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.body.classList.add("locked");
+
+    document.querySelector(".custom-learn-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+
+      document.body.classList.remove("locked");
+
+      const level1 = document.getElementById("level1");
+      const phases = document.getElementById("phase-columns");
+
+      this.style.display = "none";
+
+      level1.scrollIntoView({ behavior: "smooth" });
+
+      setTimeout(() => {
+        phases.classList.remove("opacity-0");
+        phases.classList.add("opacity-1");
+      }, 1000);
+    });
+
+    const cinematic = document.getElementById("cinematic-text");
+
+    setTimeout(() => {
+      cinematic.classList.remove("opacity-0");
+      cinematic.classList.add("opacity-1");
+      phases.classList.remove("opacity-0");
+      phases.classList.add("opacity-1");
+    }, 1000);
+
+    const modal = document.getElementById('universalModal');
+    modal.addEventListener('show.bs.modal', function (event) {
+      const trigger = event.relatedTarget;
+      const title = trigger.getAttribute('data-title');
+      const body = trigger.getAttribute('data-body');
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').textContent = body;
+    });
+
+
+  </script>
+
+
+  <!-- Math Modal -->
+  <div class="modal fade" id="mathModal" tabindex="-1" aria-labelledby="mathModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title w-100 text-center">Mathematics – Level 1</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body content-scroll">
+
+          <h2>Phase 1 — Theory</h2>
+          <ul>
+            <li>Arithmetic, ratios, proportions, percentages</li>
+            <li>Algebra I/II: factoring, inequalities, functions, exponents, radicals</li>
+            <li>Geometry: triangles, circles, coordinate proofs, angle theorems</li>
+            <li>Logic: truth tables, propositional logic, predicates</li>
+            <li>Precalculus: functions, growth, logarithms, domain/range</li>
+            <li>Discrete Math: sets, functions, relations, induction, number theory basics</li>
+          </ul>
+
+          <h2>Books & Resources</h2>
+          <ul>
+            <li><strong>Art of Problem Solving Volume 1</strong> – Richard Rusczyk<br>
+              → Focus: logic, geometry, number theory, counting<br>
+              → Do all challenge problems. Scan proofs into Obsidian.
+            </li>
+            <li><strong>Discrete Mathematics and Its Applications</strong> – Kenneth Rosen (Ch. 1–3)</li>
+            <li><strong>How to Prove It</strong> – Daniel Velleman (Ch. 1–5)</li>
+            <li><strong>Brilliant.org</strong> – Logic, Number Theory, Mathematical Thinking</li>
+          </ul>
+
+          <h2>Video Courses</h2>
+          <ul>
+            <li><strong>MIT 6.042J</strong> Mathematics for Computer Science (Lectures 1–7)</li>
+            <li><strong>Khan Academy:</strong> Precalculus, Logic, and Proofs</li>
+            <li><strong>AoPS YouTube:</strong> Proof training + challenge walkthroughs</li>
+          </ul>
+
+          <h2>Phase 2 — Simulation</h2>
+          <ul>
+            <li>Python script for logic expression evaluation & truth tables</li>
+            <li>10 formal geometry theorem proofs → /Math/Geometry/</li>
+            <li>Anki deck with all logic & set theory rules</li>
+            <li>50 AoPS exercises — LaTeX or scanned proof docs</li>
+            <li>Jupyter “Induction Walkthrough Notebook”</li>
+          </ul>
+
+          <h2>Phase 3 — Publications</h2>
+          <ul>
+            <li>Compare Boolean vs. quantum logic gates</li>
+            <li>Essay: “How logic and number theory underpin cryptographic systems”</li>
+            <li>“Proof of the Week” habit – handwritten or LaTeX</li>
+            <li>Post 2–3 solutions on Math.StackExchange</li>
+            <li>Annotate IACR/arXiv preprints in Obsidian</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Programming Modal -->
+  <div class="modal fade" id="programmingModal" tabindex="-1" aria-labelledby="programmingModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="programmingModalLabel">Programming – Level 1</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2>Phase 1 — Theory</h2>
+          <ul>
+            <li>Variables, data types, strings, numbers, lists, tuples, dictionaries</li>
+            <li>Functions, parameters, return values, recursion basics</li>
+            <li>Conditionals (if, else, elif), loops (for, while)</li>
+            <li>File I/O: read/write, CSV, JSON</li>
+            <li>Basic data structures: stack, queue, list</li>
+            <li>Error handling (try/except), input validation</li>
+            <li>Code structure: modularity, DRY, comments, docstrings</li>
+          </ul>
+
+          <h4>Books</h4>
+          <ul>
+            <li><strong>Automate the Boring Stuff</strong> – Al Sweigart (Ch. 1–10)</li>
+            <li><strong>Python Crash Course</strong> – Eric Matthes (Ch. 1–12)</li>
+            <li><strong>CS50x Companion PDF</strong> – Free online</li>
+            <li><strong>Think Python</strong> – Allen Downey</li>
+          </ul>
+
+          <h4>Video Courses</h4>
+          <ul>
+            <li><strong>CS50x</strong> (Weeks 0–5)</li>
+            <li><strong>MIT 6.0001: </strong>Introduction to CS & Programming</li>
+            <li><strong>Corey Schafer Python Series </strong>(YouTube)</li>
+            <li>Tech With Tim (to-do app, calculator, file reader)</li>
+          </ul>
+
+          <h2>Phase 2 — Simulation</h2>
+          <ul>
+            <li><strong>Password Generator CLI</strong></li>
+            <li><strong>Simple File Encryption Tool</strong> (XOR or Caesar shift)</li>
+            <li><strong>To-Do List App</strong> (CRUD, JSON backend)</li>
+            <li><strong>Basic Shell Interpreter</strong> (cd, ls, echo)</li>
+            <li><strong>Spreadsheet Automation</strong> with openpyxl or pandas</li>
+          </ul>
+
+          <h4>Stretch Projects</h4>
+          <ul>
+            <li>Logic gate simulator</li>
+            <li>Math problem generator</li>
+            <li>CSV-to-HTML table converter</li>
+            <li>Quiz game with JSON score tracking</li>
+          </ul>
+
+          <h4>Tools</h4>
+          <ul>
+            <li>Python 3.10+, pip, virtualenv, JupyterLab</li>
+            <li>VS Code or PyCharm Community</li>
+            <li>Git + GitHub CLI, Markdown for logs</li>
+          </ul>
+
+          <h2>Phase 3 — Publications</h2>
+          <ul>
+            <li>Abstraction, Input-Process-Output modeling</li>
+            <li>Flowcharts, Trace Tables</li>
+            <li><strong>Big-O basics:</strong> for vs nested for</li>
+            <li>Recursion vs Iteration</li>
+          </ul>
+
+          <h4>Theory Resources</h4>
+          <ul>
+            <li><strong>Grokking Algorithms</strong> – Aditya Bhargava</li>
+            <li><strong>CS50x</strong> Weeks 3–5</li>
+            <li><strong>MIT 6.0001</strong> – Recursion & modeling</li>
+          </ul>
+
+          <h4>Practice Sites</h4>
+          <ul>
+            <li><strong>HackerRank</strong> – Strings, Lists, Dicts</li>
+            <li><strong>LeetCode</strong> – Two Sum, Valid Parentheses, Merge Sorted Lists</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Cybersecurity Modal -->
+  <div class="modal fade" id="cyberModal" tabindex="-1" aria-labelledby="cyberModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-light border-0" style="background-color: #111;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cyberModalLabel">Cybersecurity – Level 1</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2>Phase 1 — Theory</h2>
+          <ul>
+            <li>The CIA Triad: Confidentiality, Integrity, Availability</li>
+            <li>Common Threats: Malware, phishing, brute force, man-in-the-middle</li>
+            <li>Security Practices: Least privilege, defense-in-depth, patching</li>
+            <li>Password Security: Hashing, salting, cracking basics</li>
+            <li>Encryption Basics:
+              <ul>
+                <li>Symmetric: Caesar cipher, Vigenère cipher, AES (concept only)</li>
+                <li>Asymmetric: RSA (very high-level)</li>
+              </ul>
+            </li>
+            <li>Hashing Concepts: SHA-2, MD5 (and their vulnerabilities)</li>
+            <li>Authentication: MFA, tokens, biometrics</li>
+          </ul>
+
+          <h4>Books</h4>
+          <ul>
+            <li><strong>Cybersecurity Essentials</strong> – Charles J. Brooks (Ch. 1–4)</li>
+            <li><strong>Security+ All-in-One Guide</strong> – Darril Gibson (optional)</li>
+            <li><strong>Serious Cryptography</strong> – Jean-Philippe Aumasson (Intro + Ch. 1)</li>
+          </ul>
+
+          <h4>Video Series</h4>
+          <ul>
+            <li>Professor Messer – CompTIA Security+ playlist</li>
+            <li>Computerphile – Encryption, Hashing, SQL Injection, Password Cracking</li>
+            <li>LiveOverflow – Beginner binary exploitation and CTFs</li>
+          </ul>
+
+          <h2>Phase 2 — Simulation</h2>
+          <ul>
+            <li>Caesar & Vigenère Cipher CLI Tool</li>
+            <li>Password Strength Checker</li>
+            <li>Breach Case Study Writeup</li>
+            <li>Your Own Security Policy</li>
+            <li>Kali Linux VM Setup (VirtualBox or VMware)</li>
+          </ul>
+
+          <h4>Labs & Platforms</h4>
+          <ul>
+            <li><strong>TryHackMe</strong> – Pre-Security Path, Linux Fundamentals, Networking Fundamentals</li>
+            <li><strong>OverTheWire: Bandit</strong> – Levels 0–10</li>
+            <li><strong>HackTheBox Academy</strong> – Linux, Networking, Pentesting Fundamentals</li>
+          </ul>
+
+          <h2>Phase 3 — Publications</h2>
+          <ul>
+            <li>Write lab reports in Obsidian or Markdown</li>
+            <li>Compare phishing vs ransomware vs malware</li>
+            <li>Explore:
+              <ul>
+                <li><code>nmap</code> – IP scanning & enumeration</li>
+                <li><code>hashcat</code> – Password cracking tools</li>
+                <li><code>netstat</code> – Open ports & network state</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Articles & Resources</h4>
+          <ul>
+            <li>NIST Beginner Cybersecurity Reading List</li>
+            <li>MITRE ATT&CK Framework (Overview)</li>
+            <li>OWASP Top 10 — Summary Focus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Math L2-->
+  <div class="modal fade" id="mathModalLevel2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content tron-modal text-light">
+        <div class="modal-header border-0">
+          <h5 class="neon-title w-100 text-center">Mathematics – Level 2</h5>
+          <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 m-3"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>Phase 1 — Theory and Conceptual Mastery</h5>
+          <ul>
+            <li>Arithmetic & Algebra II: ratios, exponential growth, rational expressions</li>
+            <li>Advanced Functions: polynomial, rational, logarithmic</li>
+            <li>Logic: propositional/predicate logic, inference rules</li>
+            <li>Geometry: coordinate proofs, triangle centers, circle theorems</li>
+            <li>Induction & Discrete Math: recursion, pigeonhole principle</li>
+            <li>Number Theory: GCD, LCM, Euclidean algorithm, modular arithmetic</li>
+          </ul>
+
+          <h5>Books & Resources</h5>
+          <ul>
+            <li><strong>Art of Problem Solving Vol. 1</strong> — Geometry, number theory</li>
+            <li><strong>How to Prove It</strong> — Velleman (Ch. 1–5)</li>
+            <li><strong>Discrete Mathematics</strong> — Rosen (Ch. 1–3)</li>
+            <li><strong>Brilliant.org</strong> — Logic & Number Theory</li>
+          </ul>
+
+          <h5>Video Courses</h5>
+          <ul>
+            <li>MIT 6.042J — Lectures 1–7</li>
+            <li>Khan Academy — Logic, Induction</li>
+            <li>AoPS YouTube — Proof Challenge Walkthroughs</li>
+          </ul>
+
+          <h5>Phase 2 — Simulation & Projects</h5>
+          <ul>
+            <li>Logic Engine – Truth table generator in Python</li>
+            <li>10 Geometry Proofs – Handwritten or LaTeX</li>
+            <li>Anki deck – Logic laws, strategies</li>
+            <li>50 AoPS problems – write full solutions</li>
+            <li>Jupyter Induction Notebook – recursive proof archive</li>
+          </ul>
+
+          <h5>Tools</h5>
+          <ul>
+            <li>Obsidian vault: /Math/Level_2/</li>
+            <li>LaTeX via Overleaf or TeXStudio</li>
+            <li>Python + matplotlib</li>
+            <li>Anki for spaced repetition</li>
+          </ul>
+
+          <h5>Phase 3 — Research & Integration</h5>
+          <ul>
+            <li>Essay: Logic & Number Theory in Crypto</li>
+            <li>Boolean vs Quantum logic (1-pager)</li>
+            <li>Proof of the Week (handwritten or GitHub repo)</li>
+            <li>StackExchange posts + GitHub documentation</li>
+            <li>Review arXiv/IACR preprints</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Programming L2-->
+  <div class="modal fade" id="programmingModalLevel2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content tron-modal text-light">
+        <div class="modal-header border-0">
+          <h5 class="neon-title w-100 text-center">Programming – Level 2</h5>
+          <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 m-3"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>Phase 1 — Theory</h5>
+          <ul>
+            <li><strong>Algorithm Design:</strong> Merge Sort, Quick Sort, Heap Sort</li>
+            <li>Searching: Binary, Linear, DFS, BFS</li>
+            <li>Recursion & Tail Recursion</li>
+            <li><strong>Data Structures:</strong> Arrays, Linked Lists, Stacks, Queues</li>
+            <li>Trees: Binary, N-ary, AVL, Heaps</li>
+            <li>Hash Tables & Sets</li>
+            <li>Graphs: Adjacency List/Matrix</li>
+            <li><strong>Complexity Analysis:</strong> Big-O, Ω, Θ; Recurrence Relations</li>
+            <li><strong>Functional Thinking:</strong> Map, Filter, Reduce, Immutability</li>
+          </ul>
+
+          <h5>Books & Resources</h5>
+          <ul>
+            <li><strong>Grokking Algorithms</strong> – Aditya Bhargava</li>
+            <li><strong>Problem Solving with Algorithms and Data Structures in Python</strong> – Brad Miller</li>
+            <li><strong>Cracking the Coding Interview</strong> – Laakmann McDowell</li>
+            <li><strong>Elements of Programming Interviews</strong> – Aziz, Lee, Prakash</li>
+            <li><strong>CS50 – Harvard</strong> (Weeks 4–7)</li>
+          </ul>
+
+          <h5>Videos</h5>
+          <ul>
+            <li>MIT 6.006 – Intro to Algorithms (Lectures 1–8)</li>
+            <li>WilliamFiset – Trees & Data Structures</li>
+            <li>Python Engineer – Recursion, Hash Maps</li>
+            <li>AlgoExpert – Algorithms + Whiteboard Prep</li>
+          </ul>
+
+          <h5>Phase 2 — Simulations</h5>
+          <ul>
+            <li>Data Structures Library — Custom Stack, Queue, Linked List, BST</li>
+            <li>Sorting Visualizer — GUI for bubble/merge/quick sort</li>
+            <li>Recursive Puzzle Solver — Hanoi, N-Queens, Sudoku</li>
+            <li>Pathfinding — Implement Dijkstra’s or A* Grid Search</li>
+            <li>GitHub Vault — 100+ documented LeetCode/HackerRank solutions</li>
+          </ul>
+
+          <h5>Tools</h5>
+          <ul>
+            <li>Python 3.10+ with Jupyter, VS Code</li>
+            <li>pytest — TDD</li>
+            <li>matplotlib / pygame — Visuals</li>
+            <li>GitHub → /Programming/Level_2/</li>
+            <li>Obsidian → /Code/DSA/Theory/, /Code/DSA/Solved/</li>
+          </ul>
+
+          <h5>Phase 3 — Publications</h5>
+          <ul>
+            <li>Compare memory in Python vs C (recursion, pointers)</li>
+            <li>Write: “Understanding Recursion from a Systems View”</li>
+            <li>Document 10 hardest problems (write-up + visuals)</li>
+            <li>Create: Hash Map tutorial blog or Notion guide</li>
+            <li>Publish to Code4Thought / dev.to</li>
+            <li>Bonus: Connect with modular arithmetic or quantum logic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Networking L2 -->
+  <div class="modal fade" id="networkingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content tron-modal text-light">
+        <div class="modal-header border-0">
+          <h5 class="neon-title w-100 text-center">Networking – Level 2</h5>
+          <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 m-3"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>Phase 1 — Theory</h5>
+          <ul>
+            <li><strong>TCP/IP Stack:</strong> headers, handshake, UDP vs TCP</li>
+            <li><strong>IP Addressing & Subnetting:</strong> CIDR, ARP, NAT</li>
+            <li><strong>Routing:</strong> RIP, OSPF, route tables</li>
+            <li><strong>Protocols:</strong> DHCP, DNS, ICMP, SSL/TLS, ports</li>
+            <li><strong>Troubleshooting:</strong> ping, netstat, traceroute</li>
+          </ul>
+
+          <h5>Books & Resources</h5>
+          <ul>
+            <li><strong>Kurose & Ross:</strong> Top-Down Networking (Ch. 1–4)</li>
+            <li><strong>TCP/IP Illustrated</strong> – Stevens (Vol. 1)</li>
+            <li><strong>Network Warrior</strong> – Gary Donahue</li>
+            <li><strong>Cisco SkillsForAll</strong> curriculum</li>
+          </ul>
+
+          <h5>Videos</h5>
+          <ul>
+            <li><strong>Stanford CS144</strong> – Computer Networking</li>
+            <li><strong>NetworkChuck</strong> – Subnetting, DNS, TCP handshake</li>
+            <li><strong>Udemy</strong> – Practical Networking (Greer/Bombal)</li>
+          </ul>
+
+          <h5>Phase 2 — Simulation</h5>
+          <ul>
+            <li>Subnetting Lab – Class B segmentation & host ranges</li>
+            <li>Wireshark – Dissect TCP/UDP/ICMP headers</li>
+            <li>Python Port Scanner – Scan open TCP services</li>
+            <li>DHCP & DNS Server Setup – Linux dnsmasq or similar</li>
+          </ul>
+
+          <h5>Tools & Platforms</h5>
+          <ul>
+            <li><strong>Tools:</strong> Wireshark, Nmap, tcpdump, netcat, GNS3, Packet Tracer</li>
+            <li><strong>Labs:</strong> TryHackMe, Cisco SkillsForAll, Hack The Box (networking modules)</li>
+          </ul>
+
+          <h5>Phase 3 — Publications</h5>
+          <ul>
+            <li>Create a visual map of OSI and TCP/IP stack per protocol</li>
+            <li>Write-up: “Inside the TCP Handshake + What Can Break It?”</li>
+            <li>Build a GitHub repo for labs & tools <code>/networking/</code></li>
+            <li>Document packet dissections, routing tables, and IP experiments</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

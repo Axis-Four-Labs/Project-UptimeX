@@ -476,6 +476,29 @@ body {
   text-decoration: underline;
   color: white;
 }
+.academic-link-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 3rem; 
+  margin-top: 1rem;
+}
+
+.learn-path-link {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #aad227;
+  text-decoration: none;
+}
+
+.learn-path-link:visited {
+  color: #aad227;
+}
+
+.learn-path-link:hover {
+  color: #caff4f;
+  text-shadow: 0 0 6px #caff4f;
+}
+
 
 /* === Responsive Design === */
 @media (max-width: 768px) {
