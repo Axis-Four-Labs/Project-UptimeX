@@ -373,13 +373,7 @@ body {
   font-size: 0.8em;
 }
 
-.resource-container {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  padding-bottom: 15px;
 
-}
 
 /* === Footer === */
 .footer {
@@ -391,7 +385,6 @@ body {
   background-color: #080808;
   font-size: 0.85em;
   align-items: end;
-  justify-content: center;
 }
 
 .footer-source-item {
@@ -411,10 +404,17 @@ body {
   color: black;
 }
 
+.footer-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+}
+
 .footer-right {
   color: var(--color-text-primary);
   white-space: nowrap;
-  align-self: end;
+  align-self: center;
+
 }
 
 .member-link {
@@ -482,17 +482,34 @@ body {
 }
 
 .member-profile .info a {
+  position: relative;
   color: var(--color-accent);
   text-decoration: none;
   word-break: break-word;
+  transition: color 0.3s ease;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.member-profile .info a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: white;
+  transition: width 0.4s ease;
+}
+
+.member-profile .info a:hover::after {
+  width: 100%;
 }
 
 .member-profile .info a:hover {
-  text-decoration: underline;
   color: white;
 }
 
-/* === Responsive Design === */
 @media (max-width: 768px) {
   .arrow {
     transform: rotate(90deg);
