@@ -1,0 +1,238 @@
+{
+  "0": {
+    "Quantum Mechanics": [
+      {
+        "category": "Quantum Mechanics",
+        "date": "2025-01-15",
+        "title": "Introduction to Wavefunctions",
+        "desc": "Explore the mathematical descriptions of quantum states."
+      },
+      {
+        "category": "Quantum Mechanics",
+        "date": "2025-02-01",
+        "title": "Particle in a Box",
+        "desc": "Learn how boundary conditions quantize energy levels."
+      }
+    ]
+  },
+  "1": {
+    "Mathematics": [
+      {
+        "category": "Mathematics",
+        "date": "2025-01-05",
+        "title": "Linear Algebra Refresher",
+        "desc": "Vectors, matrices, and their applications in computations."
+      },
+      {
+        "category": "Mathematics",
+        "date": "2025-01-20",
+        "title": "Probability Theory",
+        "desc": "Basics of probability and random variables."
+      }
+    ],
+    "Programming": [
+      {
+        "category": "Programming",
+        "date": "2025-01-12",
+        "title": "Python Essentials",
+        "desc": "Write scripts, handle data types, and control flow."
+      },
+      {
+        "category": "Programming",
+        "date": "2025-02-02",
+        "title": "JavaScript Fundamentals",
+        "desc": "DOM manipulation and asynchronous callbacks."
+      }
+    ],
+    "Quantum Computing": [
+      {
+        "category": "Quantum Computing",
+        "date": "2025-02-10",
+        "title": "Qubit Basics",
+        "desc": "Understand superposition and Bloch sphere representation."
+      },
+      {
+        "category": "Quantum Computing",
+        "date": "2025-02-25",
+        "title": "Quantum Circuits 101",
+        "desc": "Learn to build simple quantum gates and circuits."
+      }
+    ]
+  },
+  "2": {
+    "Advanced Mathematics": [
+      {
+        "category": "Advanced Mathematics",
+        "date": "2025-03-01",
+        "title": "Fourier Analysis",
+        "desc": "Decompose functions into sine and cosine components."
+      },
+      {
+        "category": "Advanced Mathematics",
+        "date": "2025-03-15",
+        "title": "Complex Analysis",
+        "desc": "Explore analytic functions and contour integrals."
+      }
+    ],
+    "Machine Learning": [
+      {
+        "category": "Machine Learning",
+        "date": "2025-03-08",
+        "title": "Regression Techniques",
+        "desc": "Linear and polynomial regression algorithms."
+      },
+      {
+        "category": "Machine Learning",
+        "date": "2025-03-22",
+        "title": "Neural Networks",
+        "desc": "Fundamentals of perceptrons and backpropagation."
+      }
+    ],
+    "Network Infrastructure": [
+      {
+        "category": "Network Infrastructure",
+        "date": "2025-03-12",
+        "title": "OSI Model Deep Dive",
+        "desc": "Layer-by-layer understanding of network protocols."
+      },
+      {
+        "category": "Network Infrastructure",
+        "date": "2025-03-28",
+        "title": "Routing & Switching",
+        "desc": "Principles of packet routing and network switching."
+      }
+    ]
+  },
+  "3": {
+    "Systems Programming": [
+      {
+        "category": "Systems Programming",
+        "date": "2025-04-05",
+        "title": "C and Memory Management",
+        "desc": "Pointers, allocation, and buffer management."
+      },
+      {
+        "category": "Systems Programming",
+        "date": "2025-04-18",
+        "title": "Concurrency in C++",
+        "desc": "Threads, locks, and safe data sharing."
+      }
+    ],
+    "Cryptography": [
+      {
+        "category": "Cryptography",
+        "date": "2025-04-10",
+        "title": "Symmetric Encryption",
+        "desc": "AES, block ciphers, and modes of operation."
+      },
+      {
+        "category": "Cryptography",
+        "date": "2025-04-24",
+        "title": "Public Key Infrastructure",
+        "desc": "RSA, ECC, and certificate authorities."
+      }
+    ],
+    "Cybersecurity": [
+      {
+        "category": "Cybersecurity",
+        "date": "2025-04-15",
+        "title": "Threat Modeling",
+        "desc": "Identify and mitigate system vulnerabilities."
+      },
+      {
+        "category": "Cybersecurity",
+        "date": "2025-04-30",
+        "title": "Penetration Testing",
+        "desc": "Ethical hacking techniques and tools."
+      }
+    ]
+  },
+  "4": {
+    "Formal Methods": [
+      {
+        "category": "Formal Methods",
+        "date": "2025-05-02",
+        "title": "Model Checking Basics",
+        "desc": "Verify system properties with state-space exploration."
+      },
+      {
+        "category": "Formal Methods",
+        "date": "2025-05-16",
+        "title": "Theorem Proving",
+        "desc": "Automated proofs using Coq and Isabelle."
+      }
+    ],
+    "Code Auditing": [
+      {
+        "category": "Code Auditing",
+        "date": "2025-05-08",
+        "title": "Static Analysis Tools",
+        "desc": "Use linters and scanners for early bug detection."
+      },
+      {
+        "category": "Code Auditing",
+        "date": "2025-05-22",
+        "title": "Secure Code Review",
+        "desc": "Manual techniques for spotting security flaws."
+      }
+    ],
+    "Secure Architectures": [
+      {
+        "category": "Secure Architectures",
+        "date": "2025-05-12",
+        "title": "Zero Trust Networks",
+        "desc": "Design networks with minimal implicit trust."
+      },
+      {
+        "category": "Secure Architectures",
+        "date": "2025-05-26",
+        "title": "Hardware Security Modules",
+        "desc": "Protect keys and sensitive operations in hardware."
+      }
+    ]
+  },
+  "5": {
+    "Post-Quantum Cryptography": [
+      {
+        "category": "Post-Quantum Cryptography",
+        "date": "2025-06-01",
+        "title": "Lattice-Based Schemes",
+        "desc": "Explore NTRU and Learning With Errors constructions."
+      },
+      {
+        "category": "Post-Quantum Cryptography",
+        "date": "2025-06-15",
+        "title": "Hash-Based Signatures",
+        "desc": "Lamport and Merkle signature schemes."
+      }
+    ],
+    "Quantum Forensics": [
+      {
+        "category": "Quantum Forensics",
+        "date": "2025-06-05",
+        "title": "Trace Analysis",
+        "desc": "Reconstruct quantum logs to detect tampering."
+      },
+      {
+        "category": "Quantum Forensics",
+        "date": "2025-06-19",
+        "title": "Error Syndrome Decoding",
+        "desc": "Identify and correct errors in quantum memory."
+      }
+    ],
+    "Autonomous Security": [
+      {
+        "category": "Autonomous Security",
+        "date": "2025-06-10",
+        "title": "AI-Driven Defense",
+        "desc": "Use machine learning to predict and respond to threats."
+      },
+      {
+        "category": "Autonomous Security",
+        "date": "2025-06-24",
+        "title": "Self-Healing Systems",
+        "desc": "Automate recovery from security incidents."
+      }
+    ]
+  }
+}

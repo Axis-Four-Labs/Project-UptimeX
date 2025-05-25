@@ -1,0 +1,204 @@
+    ::selection {
+        background: #fff;
+        color: #000;
+    }
+
+    ::-moz-selection {
+        background: #fff;
+        color: #000;
+    }
+
+    body {
+        background: #000;
+        color: #d0d0d0;
+        font-family: 'Lora', serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    body.locked {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+    }
+
+    #cinematic-text {
+        text-align: center;
+        font-size: 2rem;
+        margin: 2rem auto;
+        max-width: 800px;
+    }
+
+    .logo {
+        height: 7rem;
+        padding-right: 1.5rem;
+    }
+
+    .navbar-brand .angel-overlay {
+        position: absolute;
+        bottom: -0.28em;
+        right: -1.3em;
+        transform: scale(0.48);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .nav-group {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .nav-group-left {
+        margin-right: 1rem;
+    }
+
+    .nav-group-right {
+        margin-left: 1rem;
+    }
+
+    .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color .2s, transform .2s;
+        text-decoration: none;
+    }
+
+    .nav-link:hover {
+        color: #caff4f !important;
+        transform: translateY(-2px);
+    }
+
+    .navbar-brand {
+        color: #fff !important;
+        font-size: 2rem;
+    }
+
+    .link-bar {
+        border-bottom: 2px solid #fff;
+        padding-bottom: .5rem;
+    }
+
+    .custom-learn-btn {
+        background: #aad227;
+        color: #000;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 24px;
+        transition: background .3s, transform .2s;
+    }
+
+    .custom-learn-btn:hover {
+        background: #fff;
+        transform: translateY(-1px);
+        color: #000;
+    }
+
+    .phase {
+        background: #111;
+        padding: 20px;
+        border-left: 4px solid #fff;
+        box-shadow: inset 0 0 12px #0a0a0a;
+        transition: all .3s;
+    }
+
+    .phase:hover {
+        background: #1a1a1a;
+        border-left-color: #aad227;
+        transform: translateY(2px);
+    }
+
+    h1 {
+        color: #aad227;
+    }
+
+    h3 {
+        color: #aad227;
+        margin-bottom: 12px;
+    }
+
+    p {
+        font-size: .9rem;
+        opacity: .9;
+    }
+
+    .green {
+        color: #aad227;
+    }
+
+    .white {
+        color: #fff !important;
+    }
+
+    .cinematic-intro {
+        color: #fff;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .discover-btn {
+        font-family: Orbitron, sans-serif;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        padding: .75rem 2rem;
+        background: #111;
+        color: #aad227;
+        border: 2px solid #aad227;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .discover-btn::after {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: rgba(170, 210, 39, 0.2);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        pointer-events: none;
+        transition: transform .6s ease-out, opacity .6s ease-out;
+    }
+
+    .discover-btn:hover::after {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+
+    @keyframes neon-flicker {
+
+        0%,
+        100% {
+            text-shadow: 0 0 4px #aad227, 0 0 10px #aad227;
+        }
+
+        50% {
+            text-shadow: 0 0 12px #aad227, 0 0 20px #aad227;
+        }
+    }
+
+    .discover-btn:hover {
+        animation: neon-flicker 0.4s ease-in-out infinite alternate;
+    }
